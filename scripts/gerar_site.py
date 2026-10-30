@@ -24,6 +24,10 @@ TELEFONE_SCHEMA = "+55-11-97236-0424"
 CNPJ = "26.618.197/0001-10"
 MARCAS = ["Rinnai", "Bosch", "Komeco", "Lorenzetti", "Rheem", "Heliotek"]
 PAGAMENTO = "Crédito, débito, Pix e dinheiro"
+HORARIO = "24 horas, inclusive fim de semana"
+HORARIO_SCHEMA = {"@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                  "opens": "00:00", "closes": "23:59"}
 
 # Ordem = da mais próxima para a mais distante de Jandira.
 # "pagina": True gera uma página própria para a cidade.
@@ -97,6 +101,7 @@ def empresa_schema():
         "address": {"@type": "PostalAddress", "addressLocality": "Jandira", "addressRegion": "SP", "addressCountry": "BR"},
         "areaServed": [{"@type": "City", "name": c["nome"]} for c in CIDADES],
         "paymentAccepted": "Cartão de crédito, cartão de débito, Pix, dinheiro",
+        "openingHoursSpecification": HORARIO_SCHEMA,
         "knowsAbout": ["Aquecedor a gás de passagem", "ABNT NBR 13103", "GLP", "Gás natural"] + MARCAS,
         "contactPoint": {"@type": "ContactPoint", "telephone": TELEFONE_SCHEMA, "contactType": "customer service",
                          "availableLanguage": "Portuguese", "contactOption": "WhatsApp"},
@@ -144,7 +149,7 @@ def chips(prefixo):
 def atualizar_home():
     arq = ROOT / "index.html"
     t = arq.read_text(encoding="utf-8")
-    t = re.sub(r"<title>.*?</title>", "<title>Aquecedor a Gás em Jandira e Região | OL3 Aquecedores</title>", t, count=1)
+    t = re.sub(r"<title>.*?</title>", "<title>Aquecedor a Gás 24h em Jandira e Região | OL3 Aquecedores</title>", t, count=1)
     t = re.sub(r'\n<link rel="canonical"[^>]*>', "", t)
     t = re.sub(r'\n<meta property="og:url"[^>]*>', "", t)
     t = t.replace('<meta property="og:type" content="website">',
@@ -181,10 +186,13 @@ def pagina_cidade(c):
                  else "Nossa base: atendimento mais rápido da região.")
     titulo = f"Aquecedor a Gás em {nome} | Instalação e Manutenção | OL3"
     descricao = (f"Instalação, manutenção e conserto de aquecedor a gás em {nome}. "
-                 f"Norma NBR 13103, técnico formado pelo SENAI. Orçamento pelo WhatsApp {TELEFONE_VISIVEL}.")
+                 "Atendimento 24h, inclusive fim de semana. Técnico formado pelo SENAI.")
     resp_atende = f"Sim. {c['detalhe']} {distancia if c['tempo'] else 'Jandira é a nossa base.'}"
     perguntas = [
         (f"Vocês atendem em {nome}?", resp_atende),
+        ("Vocês atendem à noite e no fim de semana?",
+         "Sim. Atendemos 24 horas, inclusive no fim de semana, com atendimento no mesmo dia. "
+         "Chame no WhatsApp com o modelo do aparelho e o que aconteceu."),
         ("Posso instalar o aquecedor no banheiro?",
          "Não. A NBR 13103 proíbe aquecedores a gás em banheiros e dormitórios, por risco de monóxido de carbono. O local certo costuma ser a área de serviço ou outro ambiente ventilado."),
         ("Vocês atendem gás de botijão e gás encanado?",
@@ -201,6 +209,7 @@ def pagina_cidade(c):
         "serviceType": "Instalação e manutenção de aquecedor a gás",
         "provider": {"@id": EMPRESA_ID, "@type": "HVACBusiness", "name": "OL3 Aquecedores", "telephone": TELEFONE_SCHEMA, "url": SITE_URL},
         "areaServed": {"@type": "City", "name": nome},
+        "hoursAvailable": HORARIO_SCHEMA,
         "url": url,
     }
     trilha = {
@@ -268,7 +277,7 @@ def pagina_cidade(c):
     <div class="hero-copy">
       <nav class="crumbs" aria-label="Você está em"><a href="../">Início</a> <span aria-hidden="true">/</span> {esc(nome)}</nav>
       <h1>Aquecedor a gás em {esc(nome)}: <em>instalação e manutenção.</em></h1>
-      <p class="lead">{esc(c['intro'])} Serviço conforme a ABNT NBR 13103, feito por técnico formado pelo SENAI.</p>
+      <p class="lead">{esc(c['intro'])} Atendemos 24 horas, inclusive no fim de semana. Serviço conforme a ABNT NBR 13103, feito por técnico formado pelo SENAI.</p>
       <div class="actions">
         <a class="btn btn--flame" href="{wa(texto_wa)}"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Pedir orçamento em {esc(nome)}</a>
         <a class="btn btn--ghost" href="#servicos">Ver serviços</a>
@@ -278,6 +287,7 @@ def pagina_cidade(c):
       <div class="sheet-title"><h2>Atendimento em {esc(nome)}</h2><span class="label">OL3</span></div>
       <dl>
         <div class="row"><dt>Deslocamento</dt><dd>{esc(distancia)}</dd></div>
+        <div class="row"><dt>Horário</dt><dd>{HORARIO}</dd></div>
         <div class="row"><dt>Técnico</dt><dd>Miquéias Ferreira, formado pelo SENAI</dd></div>
         <div class="row"><dt>Norma</dt><dd>ABNT NBR 13103</dd></div>
         <div class="row"><dt>Gás</dt><dd>GLP (botijão) e GN (encanado)</dd></div>
@@ -314,7 +324,7 @@ def pagina_cidade(c):
           {check('Aquecedor que não acende ou apaga sozinho')}
           {check('Água que não esquenta ou oscila')}
           {check('Chama amarelada ou queima ruim')}
-          {check('Atendimento de emergência')}
+          {check('Emergência 24 horas, inclusive fim de semana')}
         </ul>
         <a class="btn btn--whats" href="{wa(f'Olá! Quero agendar uma manutenção de aquecedor em {nome}.')}"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Agendar manutenção</a>
       </div>
@@ -330,7 +340,7 @@ def pagina_cidade(c):
     </div>
     <ol class="steps">
       <li class="step"><h3>Chame no WhatsApp</h3><p>Diga o modelo do aparelho, o tipo de gás e mande uma foto do local.</p></li>
-      <li class="step"><h3>Receba o orçamento</h3><p>Valor claro, com o que está incluso, e o melhor dia para você.</p></li>
+      <li class="step"><h3>Receba o orçamento</h3><p>Valor claro, com o que está incluso. Se for urgente, atendemos no mesmo dia.</p></li>
       <li class="step"><h3>Serviço no local</h3><p>Vamos até você em {esc(nome)}, executamos o serviço e testamos tudo.</p></li>
       <li class="step"><h3>Pronto e garantido</h3><p>Você recebe as orientações de uso, e o serviço tem garantia.</p></li>
     </ol>
@@ -366,7 +376,7 @@ def pagina_cidade(c):
   <div class="wrap cta">
     <div>
       <h2>Precisa de técnico de aquecedor em {esc(nome)}?</h2>
-      <p class="lead">Mande uma mensagem e receba o orçamento sem compromisso.</p>
+      <p class="lead">Atendemos 24 horas, inclusive no fim de semana. Mande uma mensagem e receba o orçamento sem compromisso.</p>
     </div>
     <a class="btn btn--whats" href="{wa(texto_wa)}"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp {TELEFONE_VISIVEL}</a>
   </div>
