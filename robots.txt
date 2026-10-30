@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://mfo-magnuslion.github.io/ol3-aquecedores/sitemap.xml

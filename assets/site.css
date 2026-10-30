@@ -186,3 +186,13 @@ footer a{color:var(--flame);font-weight:700;text-decoration:none}
 .legal{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em}
 
 .float{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:55;width:60px;height:60px;border-radius:50%;background:var(--whats);color:var(--on-dark);display:grid;place-items:center;box-shadow:0 10px 24px rgba(11,27,43,.3)}
+
+/* Links de cidades e trilha (páginas por cidade) */
+.cities a{color:inherit;text-decoration:none;display:block}
+.cities li:has(a){transition:border-color .15s ease}
+.cities li:has(a):hover{border-color:var(--flame)}
+.cities li:has(a:focus-visible){outline:3px solid var(--flame);outline-offset:2px}
+.crumbs{font-size:15px;color:var(--on-dark-2)}
+.crumbs a{color:var(--on-dark);text-decoration:none;font-weight:600}
+.crumbs a:hover{text-decoration:underline}
+.panel .btn{justify-self:start}
