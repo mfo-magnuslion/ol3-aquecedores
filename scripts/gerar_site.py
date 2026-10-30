@@ -180,8 +180,8 @@ def pagina_cidade(c):
     distancia = (f"A cerca de {c['tempo']} de Jandira, sem trânsito." if c["tempo"]
                  else "Nossa base: atendimento mais rápido da região.")
     titulo = f"Aquecedor a Gás em {nome} | Instalação e Manutenção | OL3"
-    descricao = (f"Instalação e manutenção de aquecedor a gás em {nome}, conforme a ABNT NBR 13103. "
-                 f"Técnico formado pelo SENAI. Orçamento pelo WhatsApp {TELEFONE_VISIVEL}.")
+    descricao = (f"Instalação, manutenção e conserto de aquecedor a gás em {nome}. "
+                 f"Norma NBR 13103, técnico formado pelo SENAI. Orçamento pelo WhatsApp {TELEFONE_VISIVEL}.")
     resp_atende = f"Sim. {c['detalhe']} {distancia if c['tempo'] else 'Jandira é a nossa base.'}"
     perguntas = [
         (f"Vocês atendem em {nome}?", resp_atende),
@@ -189,6 +189,8 @@ def pagina_cidade(c):
          "Não. A NBR 13103 proíbe aquecedores a gás em banheiros e dormitórios, por risco de monóxido de carbono. O local certo costuma ser a área de serviço ou outro ambiente ventilado."),
         ("Vocês atendem gás de botijão e gás encanado?",
          "Sim, GLP e gás natural. O aparelho precisa ser compatível com o gás do imóvel. Se tiver dúvida, mande o modelo pelo WhatsApp que conferimos."),
+        ("O visor mostra um código de erro. O que fazer?",
+         "Anote o código e mande pelo WhatsApp junto com a marca e o modelo do aparelho. Cada fabricante tem seus códigos, e com essa informação já chegamos sabendo o provável defeito."),
         ("Quais as formas de pagamento?", "Cartão de crédito, cartão de débito, Pix e dinheiro."),
     ]
     outras = [o for o in CIDADES if o["pagina"] and o is not c]
