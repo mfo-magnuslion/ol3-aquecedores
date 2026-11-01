@@ -167,11 +167,14 @@ ICONES = """<svg width="0" height="0" style="position:absolute" aria-hidden="tru
     <symbol id="i-wa" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="#15803D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-flame" viewBox="0 0 64 64"><path d="M32 4c4 9 15 15.5 15 29a15 15 0 0 1-30 0c0-7.5 3.8-12.3 7.5-15.5 0 6.4 2.7 9.6 6.4 10.7C29.8 19.6 29.8 12 32 4z" fill="#FACC15"/><path d="M32 32c2.6 4.2 6.4 6.8 6.4 11.6a6.4 6.4 0 0 1-12.8 0c0-3.2 1.6-5.3 3.2-6.9 0 2.7 1.1 4.3 3.2 4.8 0-3.2-.3-6.4 0-9.5z" fill="#12263A"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></g></symbol>
   </defs>
 </svg>"""
 
 NAV = [("quem-somos", "Quem somos"), ("como-funciona", "Como funciona"), ("instalacao", "Instalação"),
-       ("manutencao", "Manutenção"), ("regioes", "Onde atendemos"), ("clientes", "Clientes"), ("duvidas", "Dúvidas")]
+       ("manutencao", "Manutenção"), ("regioes", "Onde atendemos"), ("duvidas", "Dúvidas")]
 
 
 def check(texto):
@@ -273,6 +276,7 @@ def pagina_cidade(c):
 <main>
 
 <section class="hero">
+  <svg class="hero-flame" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4c4 9 15 15.5 15 29a15 15 0 0 1-30 0c0-7.5 3.8-12.3 7.5-15.5 0 6.4 2.7 9.6 6.4 10.7C29.8 19.6 29.8 12 32 4z"/></svg>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <nav class="crumbs" aria-label="Você está em"><a href="../">Início</a> <span aria-hidden="true">/</span> {esc(nome)}</nav>
@@ -282,12 +286,17 @@ def pagina_cidade(c):
         <a class="btn btn--flame" href="{wa(texto_wa)}"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Pedir orçamento em {esc(nome)}</a>
         <a class="btn btn--ghost" href="#servicos">Ver serviços</a>
       </div>
+      <ul class="proof">
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-bolt"/></svg>Atendimento no mesmo dia</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-cal"/></svg>Inclusive fim de semana</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-shield"/></svg>Serviço com garantia</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Orçamento sem compromisso</li>
+      </ul>
     </div>
     <aside class="sheet" aria-label="Resumo do atendimento em {esc(nome)}">
       <div class="sheet-title"><h2>Atendimento em {esc(nome)}</h2><span class="label">OL3</span></div>
       <dl>
         <div class="row"><dt>Deslocamento</dt><dd>{esc(distancia)}</dd></div>
-        <div class="row"><dt>Horário</dt><dd>{HORARIO}</dd></div>
         <div class="row"><dt>Técnico</dt><dd>Miquéias Ferreira, formado pelo SENAI</dd></div>
         <div class="row"><dt>Norma</dt><dd>ABNT NBR 13103</dd></div>
         <div class="row"><dt>Gás</dt><dd>GLP (botijão) e GN (encanado)</dd></div>
@@ -393,6 +402,7 @@ def pagina_cidade(c):
 </footer>
 
 <a class="float" href="{wa(texto_wa)}" aria-label="Falar com a OL3 no WhatsApp"><svg width="30" height="30" aria-hidden="true"><use href="#i-wa"/></svg></a>
+<div class="mbar"><a class="btn btn--whats" href="{wa(texto_wa)}"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Chamar no WhatsApp · 24h</a></div>
 
 </body>
 </html>

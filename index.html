@@ -244,6 +244,9 @@
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="#15803D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-dash" viewBox="0 0 24 24"><path d="M6 12h12" fill="none" stroke="#6B7C88" stroke-width="2.4" stroke-linecap="round"/></symbol>
     <symbol id="i-flame" viewBox="0 0 64 64"><path d="M32 4c4 9 15 15.5 15 29a15 15 0 0 1-30 0c0-7.5 3.8-12.3 7.5-15.5 0 6.4 2.7 9.6 6.4 10.7C29.8 19.6 29.8 12 32 4z" fill="#FACC15"/><path d="M32 32c2.6 4.2 6.4 6.8 6.4 11.6a6.4 6.4 0 0 1-12.8 0c0-3.2 1.6-5.3 3.2-6.9 0 2.7 1.1 4.3 3.2 4.8 0-3.2-.3-6.4 0-9.5z" fill="#12263A"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></g></symbol>
   </defs>
 </svg>
 
@@ -259,7 +262,6 @@
       <a href="#instalacao">Instalação</a>
       <a href="#manutencao">Manutenção</a>
       <a href="#regioes">Onde atendemos</a>
-      <a href="#clientes">Clientes</a>
       <a href="#duvidas">Dúvidas</a>
     </nav>
     <a class="btn btn--whats" href="https://wa.me/5511972360424?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20aquecedor%20a%20g%C3%A1s." aria-label="WhatsApp (11) 97236-0424">
@@ -273,7 +275,6 @@
       <a href="#instalacao">Instalação</a>
       <a href="#manutencao">Manutenção</a>
       <a href="#regioes">Onde atendemos</a>
-      <a href="#clientes">Clientes</a>
       <a href="#duvidas">Dúvidas</a>
     </div>
   </nav>
@@ -282,15 +283,22 @@
 <main>
 
 <section id="inicio" class="hero">
+  <svg class="hero-flame" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4c4 9 15 15.5 15 29a15 15 0 0 1-30 0c0-7.5 3.8-12.3 7.5-15.5 0 6.4 2.7 9.6 6.4 10.7C29.8 19.6 29.8 12 32 4z"/></svg>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="label">Atendimento 24 horas · Jandira e região</span>
+      <span class="status"><i aria-hidden="true"></i>Atendimento 24 horas · Jandira e região</span>
       <h1>Instalação e conserto de aquecedor a gás <em>em Jandira e região.</em></h1>
-      <p class="lead">Serviço dentro da norma ABNT NBR 13103, feito por técnico formado pelo SENAI. Você recebe o orçamento pelo WhatsApp, vê o que está incluso e só então aprova.</p>
+      <p class="lead">Técnico formado pelo SENAI e serviço dentro da norma ABNT NBR 13103. Você recebe o orçamento pelo WhatsApp e só aprova depois de ver o que está incluso.</p>
       <div class="actions">
-        <a class="btn btn--flame" href="https://wa.me/5511972360424?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20aquecedor%20a%20g%C3%A1s."><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Pedir orçamento grátis</a>
+        <a class="btn btn--flame" href="https://wa.me/5511972360424?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20aquecedor%20a%20g%C3%A1s."><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Pedir orçamento no WhatsApp</a>
         <a class="btn btn--ghost" href="#instalacao">Ver serviços</a>
       </div>
+      <ul class="proof">
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-bolt"/></svg>Atendimento no mesmo dia</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-cal"/></svg>Inclusive fim de semana</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-shield"/></svg>Serviço com garantia</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Orçamento sem compromisso</li>
+      </ul>
     </div>
     <aside class="sheet" aria-label="Resumo do atendimento">
       <div class="sheet-title"><h2>Ficha do atendimento</h2><span class="label">OL3</span></div>
@@ -299,10 +307,7 @@
         <div class="row"><dt>Norma</dt><dd>ABNT NBR 13103</dd></div>
         <div class="row"><dt>Gás</dt><dd>GLP (botijão) e GN (encanado)</dd></div>
         <div class="row"><dt>Marcas</dt><dd>Rinnai, Bosch, Komeco, Lorenzetti, Rheem e Heliotek</dd></div>
-        <div class="row"><dt>Garantia</dt><dd>Serviço com garantia</dd></div>
         <div class="row"><dt>Pagamento</dt><dd>Crédito, débito, Pix e dinheiro</dd></div>
-        <div class="row"><dt>Horário</dt><dd>24 horas, inclusive fim de semana</dd></div>
-        <div class="row"><dt>Urgência</dt><dd>Atendimento no mesmo dia</dd></div>
       </dl>
     </aside>
   </div>
@@ -348,36 +353,24 @@
     <div class="service-copy">
       <span class="label">Instalação</span>
       <h2>Instalação de aquecedor a gás</h2>
-      <p class="lead">Aparelho novo, troca do antigo ou troca do chuveiro elétrico por aquecedor a gás. Fixação, ligações de água e gás, chaminé e testes.</p>
-      <p class="note"><strong>Por que seguir a NBR 13103?</strong> Instalação fora da norma pode causar vazamento de gás e intoxicação por monóxido de carbono, um gás sem cheiro e sem cor. Os fabricantes também exigem a norma para manter a garantia do aparelho.</p>
-      <p class="brands"><b>Marcas atendidas:</b> Rinnai, Bosch, Komeco, Lorenzetti, Rheem e Heliotek.</p>
+      <p class="lead">Aparelho novo, troca do antigo ou troca do chuveiro elétrico por aquecedor a gás. Tudo dentro da norma, com teste de vazamento no final.</p>
+      <p class="note"><strong>Por que a norma importa?</strong> Instalação fora da NBR 13103 pode causar vazamento de gás e intoxicação por monóxido de carbono, um gás sem cheiro e sem cor. Os fabricantes também exigem a norma para manter a garantia do aparelho.</p>
       <div class="actions">
         <a class="btn btn--whats" href="https://wa.me/5511972360424?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20instala%C3%A7%C3%A3o%20de%20aquecedor."><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Orçar instalação</a>
       </div>
     </div>
-    <div class="panels">
-      <div class="panel" id="incluso">
-        <h3>Incluso na instalação</h3>
-        <ul class="list">
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Avaliação de ventilação e exaustão do local</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Fixação do aparelho na parede</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Ligação dos flexíveis de água e gás</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Montagem do duto de exaustão (chaminé)</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Teste de vazamento e de funcionamento</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Orientações de uso</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Serviço com garantia</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h3>Combinado à parte, se necessário</h3>
-        <ul class="list list--dash">
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-dash"/></svg>O aparelho aquecedor</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-dash"/></svg>Novo ponto de gás ou de água quente</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-dash"/></svg>Furos em concreto e alvenaria</li>
-          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-dash"/></svg>Adequação de ventilação</li>
-        </ul>
-        <p class="muted">Tudo aparece no orçamento. Você aprova antes de começarmos.</p>
-      </div>
+    <div class="panel" id="incluso">
+      <h3>Incluso na instalação</h3>
+      <ul class="list">
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Avaliação de ventilação e exaustão do local</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Fixação do aparelho na parede</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Ligação dos flexíveis de água e gás</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Montagem do duto de exaustão (chaminé)</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Teste de vazamento e de funcionamento</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Orientações de uso</li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Serviço com garantia</li>
+      </ul>
+      <p class="muted"><b>À parte, se necessário:</b> o aparelho, novo ponto de gás ou de água quente, furos em concreto e adequação de ventilação. Tudo aparece no orçamento antes de você aprovar.</p>
     </div>
   </div>
 </section>
@@ -388,31 +381,31 @@
       <div class="service-copy">
         <span class="label">Manutenção</span>
         <h2>Manutenção, revisão e conserto</h2>
-        <p class="lead">Limpeza, revisão e conserto para o aquecedor voltar a esquentar bem, gastar menos gás e funcionar com segurança. O recomendado é uma revisão por ano.</p>
-        <div class="panel">
-          <h3>Na revisão, verificamos</h3>
-          <ul class="list">
-            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Limpeza do queimador e do trocador de calor</li>
-            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Regulagem da chama e da temperatura</li>
-            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Teste de vazamento nas conexões de gás</li>
-            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Estado dos flexíveis de água e gás</li>
-            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Exaustão e chaminé</li>
-            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Sensores e sistema de acendimento</li>
-          </ul>
-        </div>
+        <p class="lead">Para o aquecedor voltar a esquentar bem, gastar menos gás e funcionar com segurança. O recomendado é uma revisão por ano.</p>
         <div class="actions">
           <a class="btn btn--whats" href="https://wa.me/5511972360424?text=Ol%C3%A1!%20Quero%20agendar%20uma%20manuten%C3%A7%C3%A3o%20de%20aquecedor."><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Agendar manutenção</a>
         </div>
       </div>
-      <div class="service-copy">
-        <h3>Seu aquecedor está assim?</h3>
-        <ul class="symptoms">
-          <li class="symptom"><b>Água não esquenta</b><span>Fica morna ou oscila no meio do banho.</span></li>
-          <li class="symptom"><b>Não acende</b><span>Ou apaga sozinho durante o uso.</span></li>
-          <li class="symptom"><b>Chama amarelada</b><span>Sinal de queima ruim. Precisa de revisão.</span></li>
-          <li class="symptom"><b>Sem revisão há anos</b><span>Perde eficiência e segurança.</span></li>
+      <div class="panel">
+        <h3>Na revisão, verificamos</h3>
+        <ul class="list">
+          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Limpeza do queimador e do trocador de calor</li>
+          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Regulagem da chama e da temperatura</li>
+          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Teste de vazamento nas conexões de gás</li>
+          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Estado dos flexíveis de água e gás</li>
+          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Exaustão e chaminé</li>
+          <li><svg width="20" height="20" aria-hidden="true"><use href="#i-check"/></svg>Sensores e sistema de acendimento</li>
         </ul>
       </div>
+    </div>
+    <div class="symptoms-block">
+      <h3>Seu aquecedor está assim?</h3>
+      <ul class="symptoms">
+        <li class="symptom"><b>Água não esquenta</b><span>Fica morna ou oscila no meio do banho.</span></li>
+        <li class="symptom"><b>Não acende</b><span>Ou apaga sozinho durante o uso.</span></li>
+        <li class="symptom"><b>Chama amarelada</b><span>Sinal de queima ruim. Precisa de revisão.</span></li>
+        <li class="symptom"><b>Sem revisão há anos</b><span>Perde eficiência e segurança.</span></li>
+      </ul>
     </div>
     <div class="alert" id="emergencia">
       <div>
@@ -454,19 +447,6 @@
   </div>
 </section>
 
-<section id="clientes" class="band">
-  <div class="wrap">
-    <div class="head">
-      <span class="label">Clientes</span>
-      <h2>O que dizem os clientes</h2>
-    </div>
-    <div class="quotes">
-      <figure class="quote"><blockquote>[Depoimento real de um cliente, com autorização]</blockquote><figcaption>[Nome] · [Cidade]</figcaption></figure>
-      <figure class="quote"><blockquote>[Depoimento real de um cliente, com autorização]</blockquote><figcaption>[Nome] · [Cidade]</figcaption></figure>
-      <figure class="quote"><blockquote>[Depoimento real de um cliente, com autorização]</blockquote><figcaption>[Nome] · [Cidade]</figcaption></figure>
-    </div>
-  </div>
-</section>
 
 <section id="duvidas" class="band band--mist">
   <div class="wrap faq">
@@ -509,6 +489,7 @@
 </footer>
 
 <a class="float" href="https://wa.me/5511972360424?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20atendimento." aria-label="Falar com a OL3 no WhatsApp"><svg width="30" height="30" aria-hidden="true"><use href="#i-wa"/></svg></a>
+<div class="mbar"><a class="btn btn--whats" href="https://wa.me/5511972360424?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20atendimento."><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Chamar no WhatsApp · 24h</a></div>
 
 </body>
 </html>
