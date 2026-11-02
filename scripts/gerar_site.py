@@ -15,7 +15,7 @@ import re
 from pathlib import Path
 from urllib.parse import quote
 
-SITE_URL = "https://mfo-magnuslion.github.io/ol3-aquecedores/"
+SITE_URL = "https://ol3-aquecedores.vercel.app/"
 ROOT = Path(__file__).resolve().parent.parent
 
 WHATSAPP = "5511972360424"

@@ -29,4 +29,4 @@ python3 scripts/gerar_site.py
 
 ## Publicação
 
-Hospedado no GitHub Pages a partir da raiz do ramo `main`.
+Hospedado na Vercel (projeto `ol3-aquecedores`), que publica automaticamente a cada push no ramo `main`.
