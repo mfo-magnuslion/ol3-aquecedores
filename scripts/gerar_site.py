@@ -25,6 +25,7 @@ CNPJ = "26.618.197/0001-10"
 MARCAS = ["Rinnai", "Bosch", "Komeco", "Lorenzetti", "Rheem", "Heliotek"]
 PAGAMENTO = "Crédito, débito, Pix e dinheiro"
 HORARIO = "24 horas, inclusive fim de semana"
+ANALYTICS = '<script defer src="/_vercel/insights/script.js"></script>'
 HORARIO_SCHEMA = {"@type": "OpeningHoursSpecification",
                   "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                   "opens": "00:00", "closes": "23:59"}
@@ -146,12 +147,28 @@ def chips(prefixo):
     return "\n".join(linhas)
 
 
+def tags_compartilhar():
+    """Imagem e dados da prévia quando o link é compartilhado (WhatsApp, Facebook...)."""
+    return (f'<meta property="og:image" content="{SITE_URL}assets/og-image.jpg">\n'
+            '<meta property="og:image:width" content="1200">\n'
+            '<meta property="og:image:height" content="630">\n'
+            '<meta property="og:image:alt" content="OL3 Aquecedores: aquecedor a gás 24 horas em Jandira e região">\n'
+            '<meta property="og:locale" content="pt_BR">\n'
+            '<meta property="og:site_name" content="OL3 Aquecedores">\n'
+            '<meta name="twitter:card" content="summary_large_image">')
+
+
 def atualizar_home():
     arq = ROOT / "index.html"
     t = arq.read_text(encoding="utf-8")
     t = re.sub(r"<title>.*?</title>", "<title>Aquecedor a Gás 24h em Jandira e Região | OL3 Aquecedores</title>", t, count=1)
     t = re.sub(r'\n<link rel="canonical"[^>]*>', "", t)
     t = re.sub(r'\n<meta property="og:url"[^>]*>', "", t)
+    t = re.sub(r'\n<meta (?:property="og:(?:image[^"]*|locale|site_name)"|name="twitter:card")[^>]*>', "", t)
+    t = t.replace('<meta property="og:type" content="website">',
+                  '<meta property="og:type" content="website">\n' + tags_compartilhar(), 1)
+    if ANALYTICS not in t:
+        t = t.replace("\n</body>", "\n" + ANALYTICS + "\n</body>", 1)
     t = t.replace('<meta property="og:type" content="website">',
                   f'<meta property="og:type" content="website">\n<meta property="og:url" content="{SITE_URL}">\n<link rel="canonical" href="{SITE_URL}">', 1)
     t = re.sub(r'<meta property="og:title" content="[^"]*">',
@@ -239,6 +256,7 @@ def pagina_cidade(c):
 <meta property="og:description" content="{esc(descricao)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
+{tags_compartilhar()}
 <meta name="theme-color" content="#12263A">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -403,6 +421,7 @@ def pagina_cidade(c):
 
 <a class="float" href="{wa(texto_wa)}" aria-label="Falar com a OL3 no WhatsApp"><svg width="30" height="30" aria-hidden="true"><use href="#i-wa"/></svg></a>
 <div class="mbar"><a class="btn btn--whats" href="{wa(texto_wa)}"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Chamar no WhatsApp · 24h</a></div>
+{ANALYTICS}
 
 </body>
 </html>
