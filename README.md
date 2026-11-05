@@ -29,4 +29,4 @@ python3 scripts/gerar_site.py
 
 ## Publicação
 
-Hospedado na Vercel (projeto `ol3-aquecedores`), que publica automaticamente a cada push no ramo `main`.
+Hospedado na Vercel (projeto `ol3-aquecedores`) no domínio https://ol3aquecedores.com.br/, com publicação automática a cada push no ramo `main`.
