@@ -26,6 +26,8 @@ MARCAS = ["Rinnai", "Bosch", "Komeco", "Lorenzetti", "Rheem", "Heliotek"]
 PAGAMENTO = "Crédito, débito, Pix e dinheiro"
 HORARIO = "24 horas, inclusive fim de semana"
 ANALYTICS = '<script defer src="/_vercel/insights/script.js"></script>'
+# Tag do Google Ads + conversão "Clique no WhatsApp" (IDs ficam em assets/medicao.js)
+MEDICAO = '<script defer src="/assets/medicao.js"></script>'
 HORARIO_SCHEMA = {"@type": "OpeningHoursSpecification",
                   "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                   "opens": "00:00", "closes": "23:59"}
@@ -169,6 +171,8 @@ def atualizar_home():
                   '<meta property="og:type" content="website">\n' + tags_compartilhar(), 1)
     if ANALYTICS not in t:
         t = t.replace("\n</body>", "\n" + ANALYTICS + "\n</body>", 1)
+    if MEDICAO not in t:
+        t = t.replace("\n</body>", "\n" + MEDICAO + "\n</body>", 1)
     t = t.replace('<meta property="og:type" content="website">',
                   f'<meta property="og:type" content="website">\n<meta property="og:url" content="{SITE_URL}">\n<link rel="canonical" href="{SITE_URL}">', 1)
     t = re.sub(r'<meta property="og:title" content="[^"]*">',
@@ -422,6 +426,7 @@ def pagina_cidade(c):
 <a class="float" href="{wa(texto_wa)}" aria-label="Falar com a OL3 no WhatsApp"><svg width="30" height="30" aria-hidden="true"><use href="#i-wa"/></svg></a>
 <div class="mbar"><a class="btn btn--whats" href="{wa(texto_wa)}"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Chamar no WhatsApp · 24h</a></div>
 {ANALYTICS}
+{MEDICAO}
 
 </body>
 </html>
