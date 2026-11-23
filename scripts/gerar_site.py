@@ -28,6 +28,18 @@ HORARIO = "24 horas, inclusive fim de semana"
 ANALYTICS = '<script defer src="/_vercel/insights/script.js"></script>'
 # Tag do Google Ads + conversão "Clique no WhatsApp" (IDs ficam em assets/medicao.js)
 MEDICAO = '<script defer src="/assets/medicao.js"></script>'
+GTM_ID = "GTM-TTMPNFGV"
+GTM_HEAD = ("<!-- Google Tag Manager -->\n"
+            "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n"
+            "new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n"
+            "j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n"
+            "'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n"
+            f"}})(window,document,'script','dataLayer','{GTM_ID}');</script>\n"
+            "<!-- End Google Tag Manager -->")
+GTM_BODY = ("<!-- Google Tag Manager (noscript) -->\n"
+            f'<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}"\n'
+            'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n'
+            "<!-- End Google Tag Manager (noscript) -->")
 HORARIO_SCHEMA = {"@type": "OpeningHoursSpecification",
                   "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                   "opens": "00:00", "closes": "23:59"}
@@ -169,6 +181,9 @@ def atualizar_home():
     t = re.sub(r'\n<meta (?:property="og:(?:image[^"]*|locale|site_name)"|name="twitter:card")[^>]*>', "", t)
     t = t.replace('<meta property="og:type" content="website">',
                   '<meta property="og:type" content="website">\n' + tags_compartilhar(), 1)
+    if GTM_ID not in t:
+        t = t.replace("<head>\n", "<head>\n" + GTM_HEAD + "\n", 1)
+        t = t.replace("<body>\n", "<body>\n" + GTM_BODY + "\n", 1)
     if ANALYTICS not in t:
         t = t.replace("\n</body>", "\n" + ANALYTICS + "\n</body>", 1)
     if MEDICAO not in t:
@@ -250,6 +265,7 @@ def pagina_cidade(c):
     return f"""<!doctype html>
 <html lang="pt-BR">
 <head>
+{GTM_HEAD}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{esc(titulo)}</title>
@@ -272,6 +288,7 @@ def pagina_cidade(c):
 {jsonld(faq_schema(perguntas))}
 </head>
 <body>
+{GTM_BODY}
 
 {ICONES}
 
