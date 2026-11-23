@@ -234,6 +234,8 @@ def pagina_cidade(c):
     distancia = (f"A cerca de {c['tempo']} de Jandira, sem trânsito." if c["tempo"]
                  else "Nossa base: atendimento mais rápido da região.")
     titulo = f"Aquecedor a Gás em {nome} | Instalação e Manutenção | OL3"
+    if len(titulo) > 60:  # o Google corta títulos longos
+        titulo = f"Aquecedor a Gás em {nome} | OL3 Aquecedores"
     descricao = (f"Instalação, manutenção e conserto de aquecedor a gás em {nome}. "
                  "Atendimento 24h, inclusive fim de semana. Técnico formado pelo SENAI.")
     resp_atende = f"Sim. {c['detalhe']} {distancia if c['tempo'] else 'Jandira é a nossa base.'}"
@@ -460,6 +462,56 @@ def pagina_cidade(c):
 """
 
 
+def pagina_404():
+    """Página de erro (a Vercel a usa para endereços que não existem). Caminhos absolutos: vale para qualquer URL."""
+    texto_wa = "Olá! Vim pelo site e gostaria de atendimento."
+    return f"""<!doctype html>
+<html lang="pt-BR">
+<head>
+{GTM_HEAD}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Página não encontrada | OL3 Aquecedores</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#12263A">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,700;100,800;100,900;112,800;112,900&amp;family=IBM+Plex+Mono:wght@500&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+{GTM_BODY}
+
+{ICONES}
+
+<main>
+<section class="hero">
+  <svg class="hero-flame" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4c4 9 15 15.5 15 29a15 15 0 0 1-30 0c0-7.5 3.8-12.3 7.5-15.5 0 6.4 2.7 9.6 6.4 10.7C29.8 19.6 29.8 12 32 4z"/></svg>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <a class="brand" href="/" aria-label="OL3 Aquecedores, início" style="color:var(--on-dark)">
+        <span class="brand-mark"><svg width="26" height="26" aria-hidden="true"><use href="#i-flame"/></svg></span>
+        <span class="brand-name"><b>OL3</b><small>AQUECEDORES</small></span>
+      </a>
+      <span class="label">Erro 404</span>
+      <h1>Esta página não existe.</h1>
+      <p class="lead">O endereço pode ter sido digitado errado. Volte para a página inicial ou fale direto com a gente pelo WhatsApp, 24 horas.</p>
+      <div class="actions">
+        <a class="btn btn--flame" href="{wa(texto_wa)}"><svg width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg>Chamar no WhatsApp</a>
+        <a class="btn btn--ghost" href="/">Ir para a página inicial</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+{ANALYTICS}
+{MEDICAO}
+</body>
+</html>
+"""
+
+
 def main():
     atualizar_home()
     urls = [SITE_URL]
@@ -474,6 +526,7 @@ def main():
     sitemap += [f"  <url><loc>{u}</loc></url>" for u in urls]
     sitemap.append("</urlset>")
     (ROOT / "sitemap.xml").write_text("\n".join(sitemap) + "\n", encoding="utf-8")
+    (ROOT / "404.html").write_text(pagina_404(), encoding="utf-8")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}sitemap.xml\n", encoding="utf-8")
     print(f"{len(urls)} páginas no sitemap")
 
