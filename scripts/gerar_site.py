@@ -68,7 +68,6 @@ CIDADES = [
     {"nome": "Cotia", "slug": "cotia", "pagina": True, "tempo": "20 minutos",
      "intro": "Cotia fica a cerca de 20 minutos de Jandira.",
      "detalhe": "Atendemos o município, incluindo a Granja Viana."},
-    {"nome": "Araçariguama", "slug": "aracariguama", "pagina": False},
     {"nome": "Vargem Grande Paulista", "slug": "vargem-grande-paulista", "pagina": False},
     {"nome": "São Paulo", "slug": "sao-paulo", "pagina": True, "tempo": "25 a 30 minutos",
      "intro": "Atendemos a capital. A zona oeste (Butantã, Jaguaré, Rio Pequeno e Lapa) fica a cerca de 25 a 30 minutos de Jandira.",
@@ -76,7 +75,6 @@ CIDADES = [
     {"nome": "Embu das Artes", "slug": "embu-das-artes", "pagina": False},
     {"nome": "Taboão da Serra", "slug": "taboao-da-serra", "pagina": False},
     {"nome": "Cajamar", "slug": "cajamar", "pagina": False},
-    {"nome": "Pirapora do Bom Jesus", "slug": "pirapora-do-bom-jesus", "pagina": False},
     {"nome": "São Roque", "slug": "sao-roque", "pagina": False},
     {"nome": "Itapecerica da Serra", "slug": "itapecerica-da-serra", "pagina": False},
 ]
