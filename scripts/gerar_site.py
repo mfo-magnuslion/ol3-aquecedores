@@ -512,6 +512,59 @@ def pagina_404():
 """
 
 
+def llms_txt():
+    """Resumo da empresa para assistentes de IA (padrão llms.txt)."""
+    cidades = [c for c in CIDADES]
+    linhas = [
+        "# OL3 Aquecedores",
+        "",
+        "> Instalação, manutenção e conserto de aquecedores a gás de passagem (GLP e gás natural) em Jandira e região, "
+        "na Grande São Paulo. Atendimento 24 horas, inclusive no fim de semana, com atendimento no mesmo dia. "
+        "Técnico formado pelo SENAI, serviço conforme a norma ABNT NBR 13103.",
+        "",
+        "## Dados da empresa",
+        "",
+        "- Nome: OL3 Aquecedores",
+        f"- CNPJ: {CNPJ}",
+        "- Responsável técnico: Miquéias Ferreira, técnico formado pelo SENAI",
+        "- Base: Jandira, SP (atende na casa do cliente; não há loja para visita)",
+        f"- WhatsApp e telefone: {TELEFONE_VISIVEL}",
+        f"- Site: {SITE_URL}",
+        f"- Horário: {HORARIO}",
+        f"- Pagamento: {PAGAMENTO}",
+        "- Marcas atendidas: " + ", ".join(MARCAS[:-1]) + " e " + MARCAS[-1],
+        "- Tipos de gás: GLP (botijão) e gás natural (encanado)",
+        "- Serviço com garantia",
+        "",
+        "## Serviços",
+        "",
+        "- Instalação de aquecedor a gás: aparelho novo, troca do antigo e troca de chuveiro elétrico por aquecedor a gás, "
+        "com avaliação de ventilação e exaustão, ligação de água e gás, chaminé e teste de vazamento.",
+        "- Manutenção e revisão: limpeza do queimador e do trocador de calor, regulagem da chama, teste de vazamento, "
+        "verificação de flexíveis, exaustão, sensores e acendimento. Recomenda-se uma revisão por ano.",
+        "- Conserto e emergência 24 horas: aquecedor que não acende, apaga sozinho, água que não esquenta ou chama amarelada.",
+        "",
+        "## Cidades atendidas",
+        "",
+    ]
+    for c in cidades:
+        if c["pagina"]:
+            linhas.append(f"- [{c['nome']}]({SITE_URL}{pasta(c)}/)" + (f": cerca de {c['tempo']} de Jandira" if c.get("tempo") else ": base da empresa"))
+        else:
+            linhas.append(f"- {c['nome']}")
+    linhas += [
+        "",
+        "## Páginas principais",
+        "",
+        f"- [Página inicial]({SITE_URL})",
+        f"- [Instalação]({SITE_URL}#instalacao)",
+        f"- [Manutenção e conserto]({SITE_URL}#manutencao)",
+        f"- [Perguntas frequentes]({SITE_URL}#duvidas)",
+        "",
+    ]
+    return "\n".join(linhas)
+
+
 def main():
     atualizar_home()
     urls = [SITE_URL]
@@ -527,6 +580,7 @@ def main():
     sitemap.append("</urlset>")
     (ROOT / "sitemap.xml").write_text("\n".join(sitemap) + "\n", encoding="utf-8")
     (ROOT / "404.html").write_text(pagina_404(), encoding="utf-8")
+    (ROOT / "llms.txt").write_text(llms_txt(), encoding="utf-8")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}sitemap.xml\n", encoding="utf-8")
     print(f"{len(urls)} páginas no sitemap")
 
